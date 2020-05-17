@@ -169,6 +169,10 @@ class SearchSPA extends Component {
             <BrowserRouter>
                 <div>
 
+                    <Switch>
+                        <Route path="/ContactInfo/:id" component={ContactInfo} />
+                        <Route path="/ContactInfo/" component={ContactInfo} />                        
+                    </Switch>
                     <form>
                         <label>Nimi:</label>
                         <input type="text" name="nimi" onChange={this.onNameChanged} />
@@ -183,10 +187,7 @@ class SearchSPA extends Component {
                     <br />
                     <label>{this.state.message}</label>
                     <table border='1'><tbody>{this.state.customerdata}</tbody></table>
-                    <Switch>
-                        <Route path="/ContactInfo/:id" component={ContactInfo} />
-                        <Route path="/ContactInfo/" component={ContactInfo} />                        
-                    </Switch>
+                   
                 </div>
 
 

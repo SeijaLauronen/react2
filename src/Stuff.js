@@ -6,7 +6,7 @@ class Stuff extends Component {
 			<div>
 			{this.props.match ?
 				<p>Ollaan Stuff {this.props.match.params.key}</p>
-				: null
+				: <p>tyhjääää stuffia, ei matchia</p>
 			}
 				<p>Ja lisää data: {this.props.name}, {this.props.address} </p>
 			</div>
