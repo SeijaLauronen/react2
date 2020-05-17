@@ -8,10 +8,10 @@ class ContactInfo extends Component {
         super();
         this.state =
         {
-            fetchID: props.match.params.id,            
+            fetchID: props.match.params.id,
             message: '',
             customerdata: ''
-        }        
+        }
     }
 
     // Tämä on tyypillisesti Reactissa se paikka, minne tehdään datan haun kutsu
@@ -26,10 +26,10 @@ class ContactInfo extends Component {
         let searchstr = '?';
         if (this.state.fetchID !== '') {
             searchstr += "id=" + this.state.fetchID + "&";
-        }        
+        }
 
         let response = await fetch("http://localhost:3004/asiakkaat" + searchstr)
-        let data = await response.json();     
+        let data = await response.json();
         console.log("JSON ", data);
 
 
@@ -43,7 +43,7 @@ class ContactInfo extends Component {
                 Puh: {customer.puh}<br />
             </p>
         );
-        
+
         this.setState({ customerdata: items });
 
         this.setState({ message: '' });
@@ -57,7 +57,13 @@ class ContactInfo extends Component {
         return (
             <div>
                 <h1>Yhteystiedot</h1>
-                <p>{this.state.message}</p>                                
+
+                {this.props.match ?
+                    <p>Parametri: {this.props.match.params.id}</p>
+                    : <p>Hae ensin asiakas, jonka yhteystiedot haluat</p>
+                }
+
+                <p>{this.state.message}</p>
                 {this.state.customerdata}
             </div>
         );

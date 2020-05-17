@@ -22,17 +22,17 @@ function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 					<h1>React 2 tehtävät</h1>
 				</header>
 
-				<table><tbody><tr><td><NavLink to="/">Kotiin</NavLink></td><td><NavLink to="/ashaku">Asiakashakuun</NavLink></td><td><NavLink to="/ContactInfo">Yhteystiedot</NavLink></td></tr></tbody></table>
+				<table><tbody><tr><td><NavLink to="/">Kotiin</NavLink></td>
+				<td><NavLink to="/ashaku">Asiakashakuun</NavLink></td>
+				<td><NavLink to="/ContactInfo">Yhteystiedot</NavLink></td></tr>
+				</tbody></table>
 
 				<hr />
 
 				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/stuff" render={() => (
-						<Stuff name="Kalle" address="Teku" />
-					)} />
-					<Route path="/stuff/:key" component={Stuff} />
-					<Route path="/ContactInfo/:id" component={ContactInfo} />
+					<Route exact path="/" component={Home} />					
+					<Route exact path="/ContactInfo/:id" component={ContactInfo} />
+					<Route exact path="/ContactInfo" component={ContactInfo} />
 					<Route path="/ashaku" component={SearchSPA} />
 				</Switch>
 
