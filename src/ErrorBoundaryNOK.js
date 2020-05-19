@@ -1,36 +1,7 @@
 import React, { Component } from 'react';
-//Koodi  suoraan täältä
+//Koodi suoraan täältä:
 //https://codepen.io/gaearon/pen/wqvxGa?editors=0010
-//Sitten kokeiltu myös tuota videolla olevaa, joka tässä nyt kommentoitu:
-// Errorboundervideo: https://www.youtube.com/watch?v=DNYXgtZBRPE
-
-
-class ErrorBoundary extends Component {
-
-    
-    /*
-    constructor(props) {
-        //super(props); //propsilla vai ilman? Ei tunnu olevan vaikutusta
-        super();
-        this.state = {
-            hasError: false
-        }
-    }
-    static getDerivedStateFromError() {        
-        return {
-            hasError: true
-        }
-    }
-    render() {
-        if (this.state.hasError){
-            return <p>Jotain meni pieleen</p>
-        }
-        //return this.props.children //tämä on kaikissa malleissa, mutta ei tämä toimi!
-        return this.props.children
-        
-    }
-    */
-    
+class ErrorBoundary extends React.Component {
     constructor(props) {
       super(props);
       this.state = { error: null, errorInfo: null };
@@ -45,15 +16,13 @@ class ErrorBoundary extends Component {
       // You can also log error messages to an error reporting service here
     }
     
-    /*
     checkErrors(props){
         if (props.lkm > 1) {        
             // Simulate a JS error
             throw new Error('Samalla id:llä useita asiakkaita');
         }
     }
-    */
-   
+
     render() {
       if (this.state.errorInfo) {
         // Error path
@@ -69,10 +38,10 @@ class ErrorBoundary extends Component {
         );
       }
       // Normally, just render children
-      return this.props.children; //tästä tuli virhe
-      
+      //return this.props.children; //tästä tuli virhe
+      //return this.props.customers;
+      return "";
       
     }  
-    
-}
-export default ErrorBoundary;
+  }
+  export default ErrorBoundary;

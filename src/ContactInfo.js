@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ErrorBoundary from './ErrorBoundary'; //86
+//import ErrorBoundary from './ErrorBoundary'; //86
 // Huhhuh, tuon fetchID:n hakuun autto tämä: 
 //https://stackoverflow.com/questions/54114416/how-to-access-this-props-match-params-along-with-other-props
 //Toimii, mutta tulee state ja unmounted virhettä, täältä vinkkiä korjaamiseen:
@@ -15,9 +15,7 @@ class ContactInfo extends Component {
             fetchID: props.match.params.id,
             message: '',
             customerdata: '',
-            countFetched:0,
-            error: null, 
-            errorInfo: null
+            countFetched:0
         }
     }
 
@@ -26,16 +24,7 @@ class ContactInfo extends Component {
         this.fetchData();
     }
 
-    //86
-    componentDidCatch(error, errorInfo) {
-        // Catch errors in any components below and re-render with error message
-        this.setState({
-          error: error,
-          errorInfo: errorInfo
-        })
-        // You can also log error messages to an error reporting service here
-    }
-
+  
     async fetchData() {
 
         this.setState({ message: 'Haetaan yhteystietoja id:lle' + this.state.fetchID + "..." });
@@ -69,9 +58,7 @@ class ContactInfo extends Component {
         if (data.length === 0) {
             this.setState({ message: 'Hakuehdon täyttäviä asiakkaita ei löytynyt' });
         }
-
         
-
     }
 
     render() {
@@ -92,8 +79,6 @@ class ContactInfo extends Component {
                 {this.state.customerdata}
                 
                
-                <ErrorBoundary>
-                </ErrorBoundary>
             </div>
         );
     }

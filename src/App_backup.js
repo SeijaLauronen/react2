@@ -7,9 +7,7 @@ import Search from './Search'; //81-83, poisto ei onnistunut tällä rakenteella
 import SearchWithDelete from './SearchWithDelete';//(81-) 84 rakenne hieman uusiksi poistoa varten
 import ContactInfo from './ContactInfo'; //85
 import SearchSPA from './SearchSPA'; //85
-import ErrorBoundary from './ErrorBoundary'; //86 
-// Täältä vinkkiä, miten saa erroboundaryn ja routen syntaksin yhteen: 
-//https://stackoverflow.com/questions/49130876/how-to-integrate-error-boundary-in-components-routed-using-react-router
+import ErrorBoundary from './ErrorBoundary'; //86
 
 // jostain olin kopsannu tämän, että on class tyyppinen, 2 seuraavaa riviä kommentoitu + alhaalta yksi
 //class App extends Component { //class tyyppisessä tämä rivi aktiiviseksi
@@ -26,31 +24,22 @@ function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 				</header>
 
 				<table><tbody><tr><td><NavLink to="/">Kotiin</NavLink></td>
-					<td><NavLink to="/ashaku">Asiakashakuun</NavLink></td>
-					<td><NavLink to="/ContactInfo">Yhteystiedot</NavLink></td>
-					<td><NavLink to="/testerror">Virhetestaus</NavLink></td></tr>
+				<td><NavLink to="/ashaku">Asiakashakuun</NavLink></td>
+				<td><NavLink to="/ContactInfo">Yhteystiedot</NavLink></td></tr>
 				</tbody></table>
 
 				<hr />
 
 				<Switch>
-
-				<Route exact path="/" component={Home} />
-					<Route
-						exact path="/testerror"
-						render={() => (
-							<ErrorBoundary>
-								<Home testpara="5" />
-							</ErrorBoundary>
-						)}
-					/>
-
+					<Route exact path="/" component={Home} />					
 					<Route exact path="/ContactInfo/:id" component={ContactInfo} />
 					<Route exact path="/ContactInfo" component={ContactInfo} />
 					<Route path="/ashaku" component={SearchSPA} />
 				</Switch>
 
+
 				<br />
+
 
 			</div>
 		</BrowserRouter>
