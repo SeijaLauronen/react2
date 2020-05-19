@@ -5,7 +5,7 @@ class Home extends Component {
 
   render() {
     if (this.props.testpara > 1) {
-      throw new Error('Testataan virhettä')
+      throw new Error('Testataan virhettä. Sulje sisältö ylänurkan ruksista, niin tulee "tuotantonäkymä"')
     }
 
     return (

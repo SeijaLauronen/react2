@@ -15,7 +15,7 @@ class ContactInfo extends Component {
             fetchID: props.match.params.id,
             message: '',
             customerdata: '',
-            countFetched:0
+            countFetched: 0
         }
     }
 
@@ -52,16 +52,24 @@ class ContactInfo extends Component {
         );
 
         this.setState({ customerdata: items });
-        this.setState({countFetched:data.length}); //86:sta varten
+        let lkm=data.length;
+        this.setState({countFetched: lkm}); //86:sta varten
 
         this.setState({ message: '' });
         if (data.length === 0) {
             this.setState({ message: 'Hakuehdon täyttäviä asiakkaita ei löytynyt' });
+            this.setState({countFetched: lkm}); //86:sta varten
         }
         
     }
 
     render() {
+        console.log ("PITUUS A:"+this.state.countFetched)
+        if (this.state.countFetched > 1) {
+            console.log ("PITUUS B:"+this.state.countFetched)
+            throw new Error('Useita asiakkaita annetulla parametrilla '+ this.props.match.params.id)            
+        }
+
         return (
              //t86
         

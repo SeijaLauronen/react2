@@ -14,6 +14,11 @@ import ErrorBoundary from './ErrorBoundary'; //86
 // jostain olin kopsannu tämän, että on class tyyppinen, 2 seuraavaa riviä kommentoitu + alhaalta yksi
 //class App extends Component { //class tyyppisessä tämä rivi aktiiviseksi
 //render() {	//class tyyppisessä tämä rivi aktiiviseksi
+
+//"tavallinen reititys ilman erroria:"
+//<Route exact path="/ContactInfo/:id" component={ContactInfo} />
+
+
 function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 	return (
 		//BrowserRouter pitää kehystää diviä
@@ -25,17 +30,26 @@ function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 					<h1>React 2 tehtävät</h1>
 				</header>
 
-				<table><tbody><tr><td><NavLink to="/">Kotiin</NavLink></td>
-					<td><NavLink to="/ashaku">Asiakashakuun</NavLink></td>
-					<td><NavLink to="/ContactInfo">Yhteystiedot</NavLink></td>
-					<td><NavLink to="/testerror">Virhetestaus</NavLink></td></tr>
+				<table><tbody>
+					<tr>
+						<td><NavLink to="/">Kotiin</NavLink></td>
+						<td><NavLink to="/ashaku">Asiakashakuun</NavLink></td>
+						<td>Yhteystietoihin pääset asiakashausta</td>
+					</tr>
+				</tbody></table>
+				<table><tbody>
+					<tr>
+						<td>Virhekokeiluja:</td>
+						<td><NavLink to="/ContactInfo">Yhteystiedot ilman parametria</NavLink></td>
+						<td><NavLink to="/testerror">Virhetestaus (toimii)</NavLink></td>
+						<td><NavLink to="/testerrorcontact/8">Virhetestaus kontaktisivulla (ei toimi kunnolla)</NavLink></td></tr>
 				</tbody></table>
 
 				<hr />
 
 				<Switch>
 
-				<Route exact path="/" component={Home} />
+					<Route exact path="/" component={Home} />
 					<Route
 						exact path="/testerror"
 						render={() => (
@@ -44,9 +58,17 @@ function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 							</ErrorBoundary>
 						)}
 					/>
-
+					
 					<Route exact path="/ContactInfo/:id" component={ContactInfo} />
 					<Route exact path="/ContactInfo" component={ContactInfo} />
+					<Route
+						exact path="/testerrorcontact/:id"
+						render={() => (
+							<ErrorBoundary>
+								<ContactInfo />
+							</ErrorBoundary>
+						)}
+					/>
 					<Route path="/ashaku" component={SearchSPA} />
 				</Switch>
 
