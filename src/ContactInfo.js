@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import ErrorBoundary from './ErrorBoundary'; //86
 // Huhhuh, tuon fetchID:n hakuun autto tämä: 
 //https://stackoverflow.com/questions/54114416/how-to-access-this-props-match-params-along-with-other-props
+//Toimii, mutta tulee state ja unmounted virhettä, täältä vinkkiä korjaamiseen:
+//https://www.debuggr.io/react-update-unmounted-component/
+// Errorboundervideo: https://www.youtube.com/watch?v=DNYXgtZBRPE
 
 class ContactInfo extends Component {
 
@@ -10,13 +14,26 @@ class ContactInfo extends Component {
         {
             fetchID: props.match.params.id,
             message: '',
-            customerdata: ''
+            customerdata: '',
+            countFetched:0,
+            error: null, 
+            errorInfo: null
         }
     }
 
     // Tämä on tyypillisesti Reactissa se paikka, minne tehdään datan haun kutsu
     componentDidMount() {
         this.fetchData();
+    }
+
+    //86
+    componentDidCatch(error, errorInfo) {
+        // Catch errors in any components below and re-render with error message
+        this.setState({
+          error: error,
+          errorInfo: errorInfo
+        })
+        // You can also log error messages to an error reporting service here
     }
 
     async fetchData() {
@@ -32,6 +49,7 @@ class ContactInfo extends Component {
         let data = await response.json();
         console.log("JSON ", data);
 
+       
 
         const items = data.map((customer) =>
             <p key={(customer.id).toString()}>
@@ -45,18 +63,24 @@ class ContactInfo extends Component {
         );
 
         this.setState({ customerdata: items });
+        this.setState({countFetched:data.length}); //86:sta varten
 
         this.setState({ message: '' });
         if (data.length === 0) {
             this.setState({ message: 'Hakuehdon täyttäviä asiakkaita ei löytynyt' });
         }
 
+        
+
     }
 
     render() {
         return (
+             //t86
+        
             <div>
                 <h1>Yhteystiedot</h1>
+                
 
                 {this.props.match ?
                     <p>Parametri: {this.props.match.params.id}</p>
@@ -64,11 +88,17 @@ class ContactInfo extends Component {
                 }
 
                 <p>{this.state.message}</p>
+                
                 {this.state.customerdata}
+                
+               
+                <ErrorBoundary>
+                </ErrorBoundary>
             </div>
         );
     }
 }
+
 
 
 export default ContactInfo;
