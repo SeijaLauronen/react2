@@ -98,7 +98,7 @@ class SearchSPA extends Component {
         const items = data.map((customer) =>
             //Huhhuh, menipä kauen ennkun hoksasin, että pitää laittaa {cLink,customer.id} eikä {cLink}{customer.id} tai jotain muuta....
             //Äh, no miksi ei toimikaan. No tämä toimii: {"http://localhost:3000/ContactInfo/",customer.id}
-            //No eikä toimi, ei mene perille kuin tuo customer.id. Miksi häsiää se reitti?????
+            //No eikä toimi, ei mene perille kuin tuo customer.id. Miksi häviää se reitti?????
             //<td><NavLink to={cLink,customer.id}>Yhteystiedot Navlinkkinä </NavLink></td>
             //<td><NavLink to="/ContactInfo/">Yhteystiedot Navlinkkinä </NavLink></td>
             <tr key={(customer.id).toString()}>
@@ -125,9 +125,10 @@ class SearchSPA extends Component {
         */
 
         //Vaihtoehto 2
-        // tätä jos kokeilee, pitäää renderissä vaihtaa table:n tilalle vaikka <ul></ul>
+        // Tällä vaihtoehdolla oli helpompi kokeilla Navlinkkiä, en tosin saanu sitä toimimaan ihan ok....
+        //pitiköhän tähän koittaaa tavallista linkkiä vai navlinkkiä...?
         
-        let tHeaderRow = <tr key="-1"><th>Nimi</th><th>Osoite</th><th>Postinro</th><th>Postitoimipaikka</th><th>Puh</th><th></th></tr>;
+        let tHeaderRow = <tr key="-1"><th>Nimi</th><th>Osoite</th><th>Postinro</th><th>Postitoimipaikka</th><th>Puh</th><th>Poista</th><th>Yhteystietoihin</th><th>Navlinkki, ei liene ok</th></tr>;
         //let resultTable = <table border='1'><tbody>{tHeaderRow}{items}</tbody></table>;
         var listitems = [];
         var rowitem="";    
@@ -150,7 +151,7 @@ class SearchSPA extends Component {
             <td><a href={totalLink}>Yhteystiedot </a></td>
             <td><NavLink to={totacNavlLink}>Yhteystiedot Navlinkkinä </NavLink></td>
             </tr>);
-            //listitems.push(rowitem);
+            //listitems.push(rowitem);//ottikin sen noin suoraan, niin ei tarvinnut käyttää rowitem += ja sitten tätä 
 
         });        
         //return listitems;  //ei käytetäkään returnia
@@ -173,6 +174,7 @@ class SearchSPA extends Component {
                         <Route path="/ContactInfo/:id" component={ContactInfo} />
                         <Route path="/ContactInfo/" component={ContactInfo} />                        
                     </Switch>
+                    <p>Huom: hakuehdot joutuu nyt antamaan kokonaan, ei osaa käsitellä tässä sanan osaa, esim Kauppak vaan pitää olla Kauppakatu 6 jne</p>
                     <form>
                         <label>Nimi:</label>
                         <input type="text" name="nimi" onChange={this.onNameChanged} />
@@ -198,6 +200,7 @@ class SearchSPA extends Component {
 }
 
 //En nyt sitten käytäkään tätä, kun en saanut tällä tuota buttonclickiä toimimaan mitenkään...
+//Kts Search.js, miten yritin. 
 function dataToTable(props) {
     let row = '';
     //mites tuon poiston saa kutsuttua

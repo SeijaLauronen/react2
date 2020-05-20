@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, NavLink, Switch } from 'react-router-dom'
 import Home from './Home';
-import Stuff from './Stuff';
-import Testheader from './Testheader';
-import Search from './Search'; //81-83, poisto ei onnistunut tällä rakenteella
-import SearchWithDelete from './SearchWithDelete';//(81-) 84 rakenne hieman uusiksi poistoa varten
+//import Stuff from './Stuff';
+//import Testheader from './Testheader';
+//import Search from './Search'; //81-83, poisto ei onnistunut tällä rakenteella
+//import SearchWithDelete from './SearchWithDelete';//(81-) 84 rakenne hieman uusiksi poistoa varten
 import ContactInfo from './ContactInfo'; //85
 import SearchSPA from './SearchSPA'; //85
 import ErrorBoundary from './ErrorBoundary'; //86 
@@ -32,17 +32,21 @@ function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 
 				<table><tbody>
 					<tr>
+						<td>Tehtävät 81-85:</td>
 						<td><NavLink to="/">Kotiin</NavLink></td>
 						<td><NavLink to="/ashaku">Asiakashakuun</NavLink></td>
 						<td>Yhteystietoihin pääset asiakashausta</td>
 					</tr>
 				</tbody></table>
+				<hr/>
+				<p>86: Errorboundary video:  https://www.youtube.com/watch?v=DNYXgtZBRPE </p>
+				<p>Asiakkaan hausta kun siirtyy yhteystietoihin, koitin laittaa, että tulisi virhe Errorboundariin, jos samalle id:lle useita yhteystietoja, ei toimi ihan toivoitulla tavalla...</p>
 				<table><tbody>
 					<tr>
-						<td>Virhekokeiluja:</td>
-						<td><NavLink to="/ContactInfo">Yhteystiedot ilman parametria</NavLink></td>
-						<td><NavLink to="/testerror">Virhetestaus (toimii)</NavLink></td>
-						<td><NavLink to="/testerrorcontact/8">Virhetestaus kontaktisivulla (ei toimi kunnolla)</NavLink></td></tr>
+						<td><b>Virhekokeiluja:</b> Huom, 2 kuuluu asiaan että tulee kehittäjän näkymä ensin. kts videovinkki</td>
+						<td><NavLink to="/ContactInfo"> 1)Yhteystiedot ilman parametria</NavLink></td>
+						<td><NavLink to="/testerror"> 2) Virhetestaus (toimii)</NavLink></td>
+						<td><NavLink to="/testerrorcontact/8"> 3) Virhetestaus kontaktisivulla (ei toimi kunnolla)</NavLink></td></tr>
 				</tbody></table>
 
 				<hr />
