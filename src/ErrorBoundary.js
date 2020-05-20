@@ -59,7 +59,7 @@ class ErrorBoundary extends Component {
         // Error path
         return (
           <div>
-            <h2>Something went wrong.</h2>
+            <h2>Tehtävä 86: Jossain tuli virhe.</h2>
             <details style={{ whiteSpace: 'pre-wrap' }}>
               {this.state.error && this.state.error.toString()}
               <br />

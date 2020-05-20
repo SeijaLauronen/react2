@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter, NavLink, Switch } from 'react-router-dom';//85
 import ContactInfo from './ContactInfo'; //85
 //Tehtavan 85 tarvitsemat muutokset
+//Miten saisi haettua substringillä??
+//https://fullstackopen.com/osa2/palvelimella_olevan_datan_hakeminen
 
 class SearchSPA extends Component {
 
