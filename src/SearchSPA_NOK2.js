@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-//import { Route, BrowserRouter, NavLink, Switch } from 'react-router-dom';//85 EI TARVII KAIKKIA
-import { NavLink } from 'react-router-dom';//85
+import { Route, BrowserRouter, NavLink, Switch } from 'react-router-dom';//85
 import ContactInfo from './ContactInfo'; //85
 //Tehtavan 85 tarvitsemat muutokset
 //Miten saisi haettua substringillä??
@@ -23,7 +22,7 @@ class SearchSPA extends Component {
             searchAddress: '',
             searchPostalNro: '',
             message: '', //laitetaan odotus kuitenkin omaan palikkaansa
-            customerdata: '<tr><td></td></tr>'//Tuli jossain vaiheessa suorittaessa virhe: Text nodes cannot appear as a child of <tbody> niin lisäsin tuo tyhjät tägit
+            customerdata: ''//Tuli jossain vaiheessa suorittaessa virhe: Text nodes cannot appear as a child of <tbody> 
         }
 
     }
@@ -169,11 +168,8 @@ class SearchSPA extends Component {
     }
 
     render() {
-        //Miten se ei muka alkuun toiminu ilman että laitan tännekin tuota BrowserRouter:ia.. 
-        //BrowserRouter oli alunperin tuolla viimesen returnin alussa, ei siis ollu tätä iffiä.
-        //Nyt kuitenkin kun poistin nämä BrowserRouter:it täältä, niin toimiihan tuo...
 //Miten saa navlinkkinä, että ei tee myös tuota  hakusivua...?
-/*
+
         if (this.props.match) {
             
             
@@ -191,11 +187,14 @@ class SearchSPA extends Component {
                 )
             }
         }
-*/
+
         return (
-            
+            <BrowserRouter>
                 <div>
-                    
+                    <Switch>
+                        <Route path="/ContactInfo/:id" component={ContactInfo} />
+                        <Route path="/ContactInfo/" component={ContactInfo} />
+                    </Switch>
                     <p>Huom. yhteystietoihin meno a hreffillä hakee palvelimelta koko sivun uusiksi, tämä ei hyvä. Navlinkkinä haku sen sijaan hakee sivun ulkoasun sivulta itsestään.</p>
                     <form>
                         <label>Nimi:</label>
@@ -213,7 +212,7 @@ class SearchSPA extends Component {
                     <table border='1'><tbody>{this.state.customerdata}</tbody></table>
 
                 </div>
-            
+            </BrowserRouter>
         )
     }
 }
