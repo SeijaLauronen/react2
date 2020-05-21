@@ -23,7 +23,7 @@ class SearchSPA extends Component {
             searchAddress: '',
             searchPostalNro: '',
             message: '', //laitetaan odotus kuitenkin omaan palikkaansa
-            customerdata: '<tr><td></td></tr>'//Tuli jossain vaiheessa suorittaessa virhe: Text nodes cannot appear as a child of <tbody> niin lisäsin tuo tyhjät tägit
+            customerdata: null //Tuli jossain vaiheessa suorittaessa virhe: Text nodes cannot appear as a child of <tbody> niin lisäsin tuo tyhjät tägit
         }
 
     }

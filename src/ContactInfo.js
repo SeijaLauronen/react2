@@ -10,13 +10,25 @@ class ContactInfo extends Component {
 
     constructor(props) {
         super();
+
+        //piti ottaa tuo nulli kiinni, kun muuten tyssähti tuohon errortestitapaukseen jo tässä...
+        let haettava=0;
+        /*
+        if (props.match !== null){
+            haettava= props.match.params.id;
+        }
+        */
+    // 86. HUH, näin päästiin tästä virheestä yli, kutsuttaessa testerrorcontact:
+       props.match ? haettava= props.match.params.id:haettava=0
+       
         this.state =
         {
-            fetchID: props.match.params.id,
+            fetchID: haettava,
             message: '',
             customerdata: '',
             countFetched: 0
         }
+        
     }
 
     // Tämä on tyypillisesti Reactissa se paikka, minne tehdään datan haun kutsu
@@ -27,7 +39,7 @@ class ContactInfo extends Component {
   
     async fetchData() {
 
-        this.setState({ message: 'Haetaan yhteystietoja id:lle' + this.state.fetchID + "..." });
+        this.setState({ message: 'Haetaan yhteystietoja id:lle ' + this.state.fetchID + "..." });
 
         let searchstr = '?';
         if (this.state.fetchID !== '') {
@@ -57,18 +69,28 @@ class ContactInfo extends Component {
 
         this.setState({ message: '' });
         if (data.length === 0) {
-            this.setState({ message: 'Hakuehdon täyttäviä asiakkaita ei löytynyt' });
+            this.setState({ message: 'Parametrilla ei löytynyt yhteystietoja (Tämä ei ole Errorboundervirhe)' });
             this.setState({countFetched: lkm}); //86:sta varten
         }
         
     }
 
     render() {
+        //Jahas, no varmaan siitä asyncistä johtuen...jotenkin pomppii, eikä tulekaan tähän vasta sen jälkeen...??
+        /*
         console.log ("PITUUS A:"+this.state.countFetched)
-        if (this.state.countFetched > 1) {
+        if (this.state.countFetched > 1) { 
             console.log ("PITUUS B:"+this.state.countFetched)
             throw new Error('Useita asiakkaita annetulla parametrilla '+ this.props.match.params.id)            
         }
+        */
+        
+       if (this.props.testpara > 50) {
+        throw new Error('Contact: Testataan virhettä. Sulje sisältö ylänurkan ruksista, niin tulee "tuotantonäkymä"')
+       }
+
+
+
 
         return (
              //t86

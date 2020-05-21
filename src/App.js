@@ -40,13 +40,13 @@ function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 				</tbody></table>
 				<hr/>
 				<p>86: Errorboundary video:  https://www.youtube.com/watch?v=DNYXgtZBRPE </p>
-				<p>Asiakkaan hausta kun siirtyy yhteystietoihin, koitin laittaa, että tulisi virhe Errorboundariin, jos samalle id:lle useita yhteystietoja, ei toimi ihan toivoitulla tavalla...</p>
+				<p>Vielä jäi ratkaisematta, kuinka routerin kanssa saisi välitettyä erroboundarin sisälläkin match-parametrin...</p><br/>
 				<table><tbody>
-					<tr>
-						<td><b>Virhekokeiluja:</b> Huom, 2 kuuluu asiaan että tulee kehittäjän näkymä ensin. kts videovinkki</td>
+					<tr>						
+						<td><b>Virhekokeiluja:</b> <br/>Huom, 2:ssa ja 3:ssa  kuuluu asiaan että tulee kehittäjän näkymä ensin. kts videovinkki</td>
 						<td><NavLink to="/ContactInfo"> 1)Yhteystiedot ilman parametria</NavLink></td>
-						<td><NavLink to="/testerror"> 2) Virhetestaus (toimii)</NavLink></td>
-						<td><NavLink to="/testerrorcontact/8"> 3) Virhetestaus kontaktisivulla (ei toimi kunnolla)</NavLink></td></tr>
+						<td><NavLink to="/testerror"> 2) Virhetestaus </NavLink></td>
+						<td><NavLink to="/testerrorcontact/8"> 3) Virhetestaus kontaktisivulla</NavLink></td></tr>
 				</tbody></table>
 
 				<hr />
@@ -69,7 +69,7 @@ function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
 						exact path="/testerrorcontact/:id"
 						render={() => (
 							<ErrorBoundary>
-								<ContactInfo />
+								<ContactInfo testpara="9999"/>
 							</ErrorBoundary>
 						)}
 					/>
